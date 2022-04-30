@@ -44,11 +44,13 @@ body {
     align-content: center;
     text-align: center;
     justify-content: center;
+    cursor: pointer;
     
 }
 #reset-button {
     margin: none;
     margin-top: auto;
+    cursor: pointer;
 }
 
 #used-letters {
