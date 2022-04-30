@@ -11,11 +11,9 @@ function getRandomInt (currentRange) {
 }
 
 function removeFromArray (array, indexToRemove) {
-    
     let usedLetter = array.splice(indexToRemove, 1);
     usedArray.push(usedLetter[0]);
     return usedLetter;
-
 }
 
 function arrayToTextContent (arrayUsed) {
@@ -33,22 +31,13 @@ const usedLetters = document.querySelector('#used-letters');
 
 let letterArray = createAlphabet();
 let usedArray = [];
-startButton.addEventListener('click', (event, currentIndex) => {
-    console.log(event.target.id)
-    let currentLetter = removeFromArray(letterArray, getRandomInt(letterArray.length));
 
+startButton.addEventListener('click', (event, currentIndex) => {
+    let currentLetter = removeFromArray(letterArray, getRandomInt(letterArray.length));
     letterBox.textContent = currentLetter;
     if (usedArray.length < 26) {
         usedLetters.textContent = arrayToTextContent(usedArray);
     }
-
-    
-    
-
-    console.log(currentLetter);
-    //console.log(letterArray);
-    
-
 });
 
 resetButton.addEventListener('click', (event) => {
