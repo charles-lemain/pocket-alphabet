@@ -47,7 +47,8 @@ body {
     
 }
 #reset-button {
-    margin-top: 20vh;
+    margin: none;
+    margin-top: auto;
 }
 
 #used-letters {
