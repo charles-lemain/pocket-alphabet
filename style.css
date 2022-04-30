@@ -23,15 +23,19 @@ body {
     flex: 0 1 auto;
     font-size: 20px;
     border: 1px solid black;
+    border-radius: 0.5rem;
     padding: 2vh 4vw;
     margin: 6vh 0vw;
 }
 #letter-show {
     font-size: 48px;
-    flex: 0 1 auto;
+    width: 54px;
+    height: 54px;
+    flex: 0 0 auto;
     margin-bottom: 6vh;
     justify-content: center;
     align-content: center;
+    text-align: center;
 
 }
 
