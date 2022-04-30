@@ -48,3 +48,10 @@ body {
 #reset-button {
     margin-top: 20vh;
 }
+
+#used-letters {
+    border: none;
+    flex: 0 1 auto;
+    font-size: 14px;
+
+}
