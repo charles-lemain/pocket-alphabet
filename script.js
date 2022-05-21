@@ -10,7 +10,8 @@ function getRandomInt(currentRange) {
     return Math.floor(Math.random() * (max - min) + min);
 }
 function removeFromArray(array, indexToRemove) {
-    let usedLetter = array.splice(indexToRemove, 1);
+    let usedLetter = array[indexToRemove];
+    
     usedArray.push(usedLetter[0]);
     return usedLetter;
 }
@@ -30,6 +31,7 @@ const usedLetters = document.querySelector('#used-letters');
 const speedButton = document.querySelector('#speed');
 const resetSpeed = document.querySelector('#default-speed');
 let letterArray = createAlphabet();
+let letterArrayFinal = createAlphabet();
 let usedArray = [];
 let letterPicker;
 let currentSpeed = 900;
@@ -49,6 +51,9 @@ startButton.addEventListener('touchstart', () => {
 });
 });
 startButton.addEventListener('touchend', () => {
+    let index = letterArray.indexOf(letterBox.textContent);
+    letterArray = letterArray.splice(index, 1);
+
     usedLetters.textContent = usedLetters.textContent.concat(letterBox.textContent, ' ');
 
 });
