@@ -12,34 +12,48 @@ function getRandomInt (currentRange) {
 
 function removeFromArray (array, indexToRemove) {
     let usedLetter = array.splice(indexToRemove, 1);
-    usedArray.push(usedLetter[0]);
-    return usedLetter;
+    let returnLetter = usedLetter[0];
+    return returnLetter;
+
 }
 
-function arrayToTextContent (arrayUsed) {
-    let stringArray = '';
-    for (let i = 0; i < arrayUsed.length; i++) {
-        stringArray = stringArray + arrayUsed[i] + ' ';
-    }
-    return stringArray;
+function pickLetter (array, index) {
+    let letter = array[index];
+    return letter;
 }
+
 
 const letterBox = document.querySelector('#letter-show');
 const startButton = document.querySelector('#start-button');
+const stopButton = document.querySelector('#stop-button');
 const resetButton = document.querySelector('#reset-button');
+const speedButton = document.querySelector('#speed-button');
+const resetSpeed = document.querySelector('#reset-speed')
 const usedLetters = document.querySelector('#used-letters');
 
 let letterArray = createAlphabet();
 let usedArray = [];
+let currentSpeed = 900;
+let running = false;
+let letterPicker;
 
-startButton.addEventListener('click', (event, currentIndex) => {
-    let currentLetter = removeFromArray(letterArray, getRandomInt(letterArray.length));
-    letterBox.textContent = currentLetter;
-    if (usedArray.length < 26) {
-        usedLetters.textContent = arrayToTextContent(usedArray);
-    }
-});
+startButton.addEventListener('click', (event) => {
+    letterPicker = setInterval(() => {
+        letterBox.textContent = pickLetter(letterArray, getRandomInt(letterArray.length));
+        }, currentSpeed); 
+    running = true;
+    });
 
+
+
+stopButton.addEventListener('click', (event) => {
+    if (running) {
+    clearInterval(letterPicker);
+    letterArray.splice(letterArray.indexOf(letterBox.textContent), 1);    
+    //let currentLetter = removeFromArray(letterArray, letterArray.indexOf(letterBox.textContent));
+    usedArray.push(letterBox.textContent);
+    usedLetters.textContent = usedArray.toString()
+}}, false);
 resetButton.addEventListener('click', (event) => {
     letterArray = createAlphabet();
     usedArray = [];
@@ -47,3 +61,11 @@ resetButton.addEventListener('click', (event) => {
     letterBox.textContent = '';
 });
 
+ speedButton.addEventListener('click', () => {
+      currentSpeed = prompt('set speed (less = faster)');
+      currentSpeed = Number(currentSpeed);
+  });
+  
+  resetSpeed.addEventListener('click', () => {
+      currentSpeed = 900;
+  });
